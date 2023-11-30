@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bme4nr7w6ahvv"]
+
+[ext_resource type="Script" path="res://Concrete/Combatant/CombatantBody.cs" id="1_cdyvw"]
+[ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="2_8sj74"]
+
+[sub_resource type="Animation" id="Animation_7cim6"]
+resource_name = "hitflash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CombatantSprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8m7jx"]
+_data = {
+"hitflash": SubResource("Animation_7cim6")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ax2wv"]
+shader = ExtResource("2_8sj74")
+shader_parameter/active = false
+
+[node name="CombatantBody" type="RigidBody2D"]
+contact_monitor = true
+script = ExtResource("1_cdyvw")
+
+[node name="CombatantAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8m7jx")
+}
+
+[node name="CombatantSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ax2wv")

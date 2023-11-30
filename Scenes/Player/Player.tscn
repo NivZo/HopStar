@@ -1,0 +1,107 @@
+[gd_scene load_steps=16 format=3 uid="uid://b6aixeiy83p61"]
+
+[ext_resource type="PackedScene" uid="uid://bme4nr7w6ahvv" path="res://Scenes/Combatants/CombatantBody.tscn" id="1_lf38s"]
+[ext_resource type="Script" path="res://Concrete/Player/Player.cs" id="1_ujrqh"]
+[ext_resource type="Texture2D" uid="uid://dbeyepc5p62fk" path="res://Assets/Ships/PlayerBlue.png" id="3_pbdv0"]
+[ext_resource type="Texture2D" uid="uid://bt8w2tec4raf7" path="res://Assets/Particles/BoostFlame.png" id="4_r62qi"]
+[ext_resource type="Texture2D" uid="uid://b3jo41s7o3mv4" path="res://Assets/UI/CrosshairSheet.png" id="5_ywm7x"]
+[ext_resource type="Script" path="res://Concrete/Player/PlayerCrosshair.cs" id="7_5fx3x"]
+[ext_resource type="PackedScene" uid="uid://ia154q44otva" path="res://Scenes/Player/PlayerCamera.tscn" id="7_tbdwh"]
+
+[sub_resource type="Gradient" id="Gradient_r22mr"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nlaug"]
+gradient = SubResource("Gradient_r22mr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v3y3l"]
+particle_flag_disable_z = true
+angle_min = 60.0
+angle_max = 120.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+color_ramp = SubResource("GradientTexture1D_nlaug")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucfi4"]
+atlas = ExtResource("5_ywm7x")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hp6q"]
+atlas = ExtResource("5_ywm7x")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4ac1"]
+atlas = ExtResource("5_ywm7x")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5qmd"]
+atlas = ExtResource("5_ywm7x")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qn27l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucfi4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hp6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4ac1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5qmd")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_ujrqh")
+
+[node name="CombatantBody" parent="." instance=ExtResource("1_lf38s")]
+
+[node name="CombatantSprite" parent="CombatantBody" index="1"]
+rotation = 1.5708
+texture = ExtResource("3_pbdv0")
+
+[node name="CombatantCollPolygon" type="CollisionPolygon2D" parent="CombatantBody"]
+visible = false
+rotation = 1.5708
+polygon = PackedVector2Array(-12, -32, 12, -32, 12, -4, 32, -4, 32, 32, 0, 24, -32, 32, -32, -4, -12, -4)
+
+[node name="CombatantEngineParticleEmitter" type="GPUParticles2D" parent="CombatantBody"]
+self_modulate = Color(1, 2, 2, 1)
+z_index = -1
+position = Vector2(-24, 0)
+scale = Vector2(0.1, 0.1)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_v3y3l")
+texture = ExtResource("4_r62qi")
+lifetime = 0.25
+preprocess = 1.0
+randomness = 0.3
+
+[node name="PlayerCrosshair" type="AnimatedSprite2D" parent="CombatantBody"]
+modulate = Color(2, 2, 2, 1)
+position = Vector2(0, 64)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qn27l")
+frame = 3
+frame_progress = 1.0
+script = ExtResource("7_5fx3x")
+
+[node name="NoseIndicator" type="AnimatedSprite2D" parent="CombatantBody/PlayerCrosshair"]
+self_modulate = Color(1, 1, 1, 0.3)
+show_behind_parent = true
+position = Vector2(160, -32)
+sprite_frames = SubResource("SpriteFrames_qn27l")
+frame = 3
+frame_progress = 1.0
+
+[node name="PlayerCamera" parent="CombatantBody" instance=ExtResource("7_tbdwh")]
+
+[editable path="CombatantBody"]

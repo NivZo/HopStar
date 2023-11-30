@@ -1,0 +1,124 @@
+[gd_scene load_steps=18 format=3 uid="uid://b24y74ksapqnc"]
+
+[ext_resource type="Texture2D" uid="uid://cfa0ivdg0ugp0" path="res://Assets/Particles/ScreenEdgeIndicatorSheet.png" id="1_8i3cn"]
+[ext_resource type="Script" path="res://Concrete/Particles/Indicator.cs" id="2_qulcn"]
+[ext_resource type="FontFile" uid="uid://dq26ef1rlj4gs" path="res://Assets/Fonts/Pixeboy.ttf" id="3_grmi5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6l6xp"]
+atlas = ExtResource("1_8i3cn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajq2x"]
+atlas = ExtResource("1_8i3cn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l40m4"]
+atlas = ExtResource("1_8i3cn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8o5qd"]
+atlas = ExtResource("1_8i3cn")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhu2s"]
+atlas = ExtResource("1_8i3cn")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v38xy"]
+atlas = ExtResource("1_8i3cn")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li50t"]
+atlas = ExtResource("1_8i3cn")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb0oa"]
+atlas = ExtResource("1_8i3cn")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f61se"]
+atlas = ExtResource("1_8i3cn")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okt3b"]
+atlas = ExtResource("1_8i3cn")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0ptp"]
+atlas = ExtResource("1_8i3cn")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pqon"]
+atlas = ExtResource("1_8i3cn")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cti3k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6l6xp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajq2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l40m4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8o5qd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhu2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v38xy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li50t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tb0oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f61se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okt3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0ptp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pqon")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_62anu"]
+font = ExtResource("3_grmi5")
+font_size = 24
+
+[node name="Indicator" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_cti3k")
+frame_progress = 0.351864
+script = ExtResource("2_qulcn")
+
+[node name="DistanceLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = 8.0
+offset_right = 4.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 11.5)
+text = "0"
+label_settings = SubResource("LabelSettings_62anu")
+horizontal_alignment = 1
+vertical_alignment = 1

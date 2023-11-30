@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b643wlie5jg5b"]
+
+[ext_resource type="Shader" path="res://Shaders/BarDepletion.gdshader" id="1_sbpj3"]
+[ext_resource type="Texture2D" uid="uid://dg4exljwdrann" path="res://Assets/UI/HealthBar.png" id="2_kexww"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmwwt"]
+shader = ExtResource("1_sbpj3")
+shader_parameter/percentage = 1.0
+shader_parameter/masked_alpha = 1.0
+shader_parameter/unmasked_alpha = 0.0
+shader_parameter/horizontal = false
+shader_parameter/invert = false
+
+[node name="HealthBar" type="Sprite2D"]
+material = SubResource("ShaderMaterial_bmwwt")
+texture = ExtResource("2_kexww")

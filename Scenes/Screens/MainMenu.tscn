@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpwe5t5fsy416"]
+
+[ext_resource type="Script" path="res://Concrete/Screens/MainMenu.cs" id="1_o2vy8"]
+[ext_resource type="FontFile" uid="uid://dq26ef1rlj4gs" path="res://Assets/Fonts/Pixeboy.ttf" id="1_wkjkq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jfb27"]
+font = ExtResource("1_wkjkq")
+font_size = 180
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8iq5"]
+size = Vector2(712, 192)
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_o2vy8")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 184.0
+offset_top = 112.0
+offset_right = 896.0
+offset_bottom = 304.0
+size_flags_horizontal = 4
+text = "STARVIVE"
+label_settings = SubResource("LabelSettings_jfb27")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="PlayButton" type="TouchScreenButton" parent="."]
+position = Vector2(540, 1080)
+shape = SubResource("RectangleShape2D_c8iq5")
+
+[node name="Label" type="Label" parent="PlayButton"]
+offset_left = -356.0
+offset_top = -96.0
+offset_right = 356.0
+offset_bottom = 96.0
+text = "PLAY
+"
+label_settings = SubResource("LabelSettings_jfb27")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShopButton" type="TouchScreenButton" parent="."]
+position = Vector2(540, 1376)
+shape = SubResource("RectangleShape2D_c8iq5")
+
+[node name="Label" type="Label" parent="ShopButton"]
+offset_left = -356.0
+offset_top = -96.0
+offset_right = 356.0
+offset_bottom = 96.0
+text = "SHOP"
+label_settings = SubResource("LabelSettings_jfb27")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="TouchScreenButton" parent="."]
+position = Vector2(540, 1672)
+shape = SubResource("RectangleShape2D_c8iq5")
+
+[node name="Label" type="Label" parent="ExitButton"]
+offset_left = -356.0
+offset_top = -96.0
+offset_right = 356.0
+offset_bottom = 96.0
+text = "EXIT
+"
+label_settings = SubResource("LabelSettings_jfb27")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="PlayButton" to="." method="OnButtonRelease" binds= ["Play"]]
+[connection signal="released" from="ShopButton" to="." method="OnButtonRelease" binds= ["Shop"]]
+[connection signal="released" from="ExitButton" to="." method="OnButtonRelease" binds= ["Exit"]]

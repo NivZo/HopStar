@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://7xd0n75g1h6o"]
+
+[ext_resource type="Script" path="res://Concrete/Controllers/PlayerController.cs" id="1_5ug7f"]
+[ext_resource type="Texture2D" uid="uid://cu7fdsl0ldywj" path="res://Assets/Controller/ControllerRadius.png" id="2_2palq"]
+[ext_resource type="Texture2D" uid="uid://cnmg7ae8e2v3" path="res://Assets/Controller/ControllerPosition.png" id="3_epq1x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kv62r"]
+radius = 248.129
+
+[node name="PlayerController" type="Area2D"]
+process_mode = 3
+top_level = true
+script = ExtResource("1_5ug7f")
+
+[node name="ControllerZone" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.117647)
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_2palq")
+
+[node name="ControllerPosition" type="Sprite2D" parent="ControllerZone"]
+self_modulate = Color(1, 1, 1, 0.392157)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_epq1x")
+
+[node name="ControllerInnerZone" type="Sprite2D" parent="ControllerZone"]
+self_modulate = Color(1, 1, 1, 0.117647)
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_2palq")
+
+[node name="ControllerArea" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kv62r")

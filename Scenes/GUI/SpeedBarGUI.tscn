@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://6r8h73jvncu8"]
+
+[ext_resource type="Shader" path="res://Shaders/BarDepletion.gdshader" id="1_1icv3"]
+[ext_resource type="Texture2D" uid="uid://b5ht3oh3iu4rs" path="res://Assets/UI/SpeedBar.png" id="1_at6ry"]
+[ext_resource type="Texture2D" uid="uid://bnxschcrsybbr" path="res://Assets/UI/SpeedBarBorder.png" id="2_ge484"]
+[ext_resource type="Script" path="res://Concrete/Screens/SpeedBar.cs" id="4_ikts1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0fh46"]
+shader = ExtResource("1_1icv3")
+shader_parameter/percentage = 0.0
+shader_parameter/masked_alpha = 1.0
+shader_parameter/unmasked_alpha = null
+shader_parameter/horizontal = true
+shader_parameter/invert = true
+
+[node name="SpeedBarGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpeedBarBorder" type="Sprite2D" parent="."]
+texture = ExtResource("2_ge484")
+
+[node name="SpeedBar" type="Sprite2D" parent="SpeedBarBorder"]
+material = SubResource("ShaderMaterial_0fh46")
+texture = ExtResource("1_at6ry")
+script = ExtResource("4_ikts1")

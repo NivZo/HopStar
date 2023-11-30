@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://blo13sqkl6lx8"]
+
+[ext_resource type="Script" path="res://Concrete/Screens/Stage.cs" id="1_17iad"]
+
+[node name="Stage" type="Node"]
+script = ExtResource("1_17iad")

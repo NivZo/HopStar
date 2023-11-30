@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://b53yd8odmfvni"]
+
+[ext_resource type="PackedScene" uid="uid://bme4nr7w6ahvv" path="res://Scenes/Combatants/CombatantBody.tscn" id="1_n7j8l"]
+[ext_resource type="Script" path="res://Concrete/Enemies/LaserBeetle.cs" id="1_o6oh8"]
+[ext_resource type="Texture2D" uid="uid://pmw5ljvyev2i" path="res://Assets/Ships/LaserBeetleFireSheet.png" id="2_bdt5l"]
+[ext_resource type="Texture2D" uid="uid://bt8w2tec4raf7" path="res://Assets/Particles/BoostFlame.png" id="4_beiuq"]
+[ext_resource type="PackedScene" uid="uid://b0ptwlafnh707" path="res://Scenes/Combatants/RayPathfinder.tscn" id="5_ipffb"]
+
+[sub_resource type="Gradient" id="Gradient_puc2w"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_avpju"]
+gradient = SubResource("Gradient_puc2w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5huhl"]
+particle_flag_disable_z = true
+angle_min = 60.0
+angle_max = 120.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+color_ramp = SubResource("GradientTexture1D_avpju")
+
+[sub_resource type="Animation" id="Animation_fe3xj"]
+resource_name = "fire"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CombatantSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [11, 15]
+}
+
+[sub_resource type="Animation" id="Animation_j8oa8"]
+resource_name = "telegraph"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CombatantSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jlyqm"]
+_data = {
+"fire": SubResource("Animation_fe3xj"),
+"telegraph": SubResource("Animation_j8oa8")
+}
+
+[node name="LaserBeetle" type="Node2D"]
+script = ExtResource("1_o6oh8")
+
+[node name="CombatantBody" parent="." instance=ExtResource("1_n7j8l")]
+
+[node name="CombatantSprite" parent="CombatantBody" index="1"]
+rotation = -1.5708
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_bdt5l")
+hframes = 16
+
+[node name="CombatantEngineParticleEmitter" type="GPUParticles2D" parent="CombatantBody"]
+self_modulate = Color(3, 0, 0.349, 1)
+z_index = -1
+position = Vector2(-32, 0)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_5huhl")
+texture = ExtResource("4_beiuq")
+lifetime = 0.25
+randomness = 0.3
+
+[node name="CombatantCollPolygon" type="CollisionPolygon2D" parent="CombatantBody"]
+visible = false
+rotation = 1.5708
+scale = Vector2(1.5, 1.5)
+polygon = PackedVector2Array(20, 0, 7, -20, -7, -20, -20, 0, -22, 25, 22, 25)
+
+[node name="RayPathfinder" parent="CombatantBody" instance=ExtResource("5_ipffb")]
+
+[node name="LaserBeetleAnimationPlayer" type="AnimationPlayer" parent="CombatantBody"]
+libraries = {
+"": SubResource("AnimationLibrary_jlyqm")
+}
+
+[editable path="CombatantBody"]

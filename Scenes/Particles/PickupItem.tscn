@@ -1,0 +1,125 @@
+[gd_scene load_steps=19 format=3 uid="uid://bukse1i0gd8nn"]
+
+[ext_resource type="Script" path="res://Concrete/Particles/Projectile.cs" id="1_6q04e"]
+[ext_resource type="Texture2D" uid="uid://pdpx3mmveegf" path="res://Assets/Powerups/BulletPlus.png" id="2_tmp2m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lgyx"]
+atlas = ExtResource("2_tmp2m")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixrjv"]
+atlas = ExtResource("2_tmp2m")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjaxd"]
+atlas = ExtResource("2_tmp2m")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt51u"]
+atlas = ExtResource("2_tmp2m")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqngg"]
+atlas = ExtResource("2_tmp2m")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wir1i"]
+atlas = ExtResource("2_tmp2m")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqrws"]
+atlas = ExtResource("2_tmp2m")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_346gn"]
+atlas = ExtResource("2_tmp2m")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q54mj"]
+atlas = ExtResource("2_tmp2m")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0twb"]
+atlas = ExtResource("2_tmp2m")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbohs"]
+atlas = ExtResource("2_tmp2m")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usxhq"]
+atlas = ExtResource("2_tmp2m")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1mf5"]
+atlas = ExtResource("2_tmp2m")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3arlm"]
+atlas = ExtResource("2_tmp2m")
+region = Rect2(832, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sc3wa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lgyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixrjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjaxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt51u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqngg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wir1i")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_tqrws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_346gn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q54mj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0twb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbohs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usxhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1mf5")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_3arlm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m6pdt"]
+radius = 32.0
+
+[node name="PickupItem" type="Area2D"]
+script = ExtResource("1_6q04e")
+
+[node name="PickupSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sc3wa")
+frame_progress = 0.978022
+
+[node name="PickupCollShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m6pdt")
+
+[connection signal="body_entered" from="." to="." method="_OnBulletBodyEntered"]

@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://ppi0k61ywskw"]
+
+[ext_resource type="Script" path="res://Concrete/Screens/ThreeChoiceModal.cs" id="1_f85g0"]
+[ext_resource type="Texture2D" uid="uid://cixqbvaer40ma" path="res://Assets/UI/ThreeChoiceModal.png" id="1_p3lof"]
+[ext_resource type="FontFile" uid="uid://dq26ef1rlj4gs" path="res://Assets/Fonts/Pixeboy.ttf" id="3_wqdgo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qvfio"]
+size = Vector2(320, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k8wy5"]
+font = ExtResource("3_wqdgo")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ThreeChoiceModal" type="Control"]
+process_mode = 3
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f85g0")
+
+[node name="ChoiceModal" type="Node2D" parent="."]
+scale = Vector2(2.8, 2.8)
+
+[node name="ModalBackground" type="Sprite2D" parent="ChoiceModal"]
+scale = Vector2(4, 4)
+texture = ExtResource("1_p3lof")
+
+[node name="ChoiceButton0" type="TouchScreenButton" parent="ChoiceModal"]
+position = Vector2(0, -36)
+shape = SubResource("RectangleShape2D_qvfio")
+
+[node name="ChoiceLabel0" type="Label" parent="ChoiceModal/ChoiceButton0"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -32.0
+offset_right = 160.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "increase attack
+damage by 00%"
+label_settings = SubResource("LabelSettings_k8wy5")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ChoiceButton1" type="TouchScreenButton" parent="ChoiceModal"]
+position = Vector2(0, 52)
+shape = SubResource("RectangleShape2D_qvfio")
+
+[node name="ChoiceLabel1" type="Label" parent="ChoiceModal/ChoiceButton1"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -32.0
+offset_right = 160.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "increase attack
+damage by 11%"
+label_settings = SubResource("LabelSettings_k8wy5")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ChoiceButton2" type="TouchScreenButton" parent="ChoiceModal"]
+position = Vector2(0, 140.667)
+shape = SubResource("RectangleShape2D_qvfio")
+
+[node name="ChoiceLabel2" type="Label" parent="ChoiceModal/ChoiceButton2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -32.0
+offset_right = 160.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "increase attack
+damage by 22%"
+label_settings = SubResource("LabelSettings_k8wy5")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="released" from="ChoiceModal/ChoiceButton0" to="." method="OnButtonRelease" flags=6 binds= [0]]
+[connection signal="released" from="ChoiceModal/ChoiceButton1" to="." method="OnButtonRelease" flags=6 binds= [1]]
+[connection signal="released" from="ChoiceModal/ChoiceButton2" to="." method="OnButtonRelease" flags=6 binds= [2]]

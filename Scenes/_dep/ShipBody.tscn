@@ -1,0 +1,110 @@
+[gd_scene load_steps=15 format=3 uid="uid://dfjnno3q1pqa0"]
+
+[ext_resource type="Script" path="res://Concrete/Ship/ShipBody.cs" id="1_bhg7s"]
+[ext_resource type="Shader" path="res://Shaders/ShipBody.gdshader" id="2_i5ug4"]
+[ext_resource type="Texture2D" uid="uid://b24hn8x6neldc" path="res://Assets/Ships/PlayerShipSheet.png" id="2_onocg"]
+[ext_resource type="Texture2D" uid="uid://bt8w2tec4raf7" path="res://Assets/Particles/BoostFlame.png" id="3_f84ac"]
+[ext_resource type="PackedScene" uid="uid://tch270dercho" path="res://Scenes/Weapon.tscn" id="6_pfgm6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6bdun"]
+shader = ExtResource("2_i5ug4")
+shader_parameter/percentage = 0.0
+shader_parameter/masked_alpha = 1.0
+shader_parameter/unmasked_alpha = null
+shader_parameter/horizontal = false
+shader_parameter/invert = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfwib"]
+atlas = ExtResource("2_onocg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_we8k1"]
+atlas = ExtResource("2_onocg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fkmr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfwib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_we8k1")
+}],
+"loop": false,
+"name": &"PlayerShip",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_gelx1"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cjym5"]
+gradient = SubResource("Gradient_gelx1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ldwgq"]
+particle_flag_disable_z = true
+angle_min = 150.0
+angle_max = 210.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+color_ramp = SubResource("GradientTexture1D_cjym5")
+
+[sub_resource type="Animation" id="Animation_2ntp6"]
+resource_name = "destroy"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpSprite:material:shader_parameter/percentage")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wutw4"]
+_data = {
+"destroy": SubResource("Animation_2ntp6")
+}
+
+[node name="ShipBody" type="RigidBody2D"]
+max_contacts_reported = 2
+contact_monitor = true
+script = ExtResource("1_bhg7s")
+
+[node name="SpSprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_6bdun")
+position = Vector2(0, -5.96046e-08)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_3fkmr")
+animation = &"PlayerShip"
+
+[node name="SpCollPolygon" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-12, -32, 12, -32, 12, -4, 32, -4, 32, 32, 0, 24, -32, 32, -32, -4, -12, -4)
+
+[node name="SpBottomMarker" type="Marker2D" parent="."]
+position = Vector2(0, 40)
+
+[node name="SpEngineParticleEmitter" type="GPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(0, 24)
+scale = Vector2(0.1, 0.1)
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_ldwgq")
+texture = ExtResource("3_f84ac")
+lifetime = 0.25
+randomness = 0.3
+
+[node name="Weapon" parent="." instance=ExtResource("6_pfgm6")]
+position = Vector2(0, -32)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wutw4")
+}

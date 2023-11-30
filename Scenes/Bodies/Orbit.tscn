@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1dg15xglolpq"]
+
+[ext_resource type="Script" path="res://Concrete/Obstacles/OrbitArea.cs" id="1_a8cqj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p7eak"]
+radius = 675.0
+
+[node name="Orbit" type="Node2D"]
+
+[node name="OrbitArea" type="Area2D" parent="."]
+show_behind_parent = true
+script = ExtResource("1_a8cqj")
+
+[node name="OrbCollShape" type="CollisionShape2D" parent="OrbitArea"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_p7eak")
+debug_color = Color(1, 1, 1, 0.133333)

@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://dn6l4xwm2f4cw"]
+
+[ext_resource type="Texture2D" uid="uid://c6t4t1kw63ng5" path="res://Assets/UI/PlayerBarsBorder.png" id="1_i4f62"]
+[ext_resource type="PackedScene" uid="uid://b643wlie5jg5b" path="res://Scenes/GUI/HealthBar.tscn" id="2_j3n6j"]
+[ext_resource type="Shader" path="res://Shaders/BarDepletion.gdshader" id="2_t76h3"]
+[ext_resource type="FontFile" uid="uid://dq26ef1rlj4gs" path="res://Assets/Fonts/Pixeboy.ttf" id="2_y6xo1"]
+[ext_resource type="Script" path="res://Concrete/Screens/ScrapCount.cs" id="3_r3hrj"]
+[ext_resource type="Texture2D" uid="uid://bns4jfinl3sis" path="res://Assets/UI/ShieldBar.png" id="4_1cw5x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y3ram"]
+font = ExtResource("2_y6xo1")
+font_size = 12
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v8jdi"]
+shader = ExtResource("2_t76h3")
+shader_parameter/percentage = 0.0
+shader_parameter/masked_alpha = 1.0
+shader_parameter/unmasked_alpha = null
+shader_parameter/horizontal = false
+shader_parameter/invert = false
+
+[node name="PlayerBars" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BarsBorder" type="Sprite2D" parent="."]
+scale = Vector2(6, 6)
+texture = ExtResource("1_i4f62")
+
+[node name="ScrapCount" type="Label" parent="BarsBorder"]
+offset_left = -18.0
+offset_top = 2.0
+offset_right = 22.0
+offset_bottom = 25.0
+text = "0"
+label_settings = SubResource("LabelSettings_y3ram")
+horizontal_alignment = 2
+script = ExtResource("3_r3hrj")
+
+[node name="HealthBar" parent="BarsBorder" instance=ExtResource("2_j3n6j")]
+position = Vector2(10, -8)
+
+[node name="ShieldBar" type="Sprite2D" parent="BarsBorder"]
+material = SubResource("ShaderMaterial_v8jdi")
+position = Vector2(7, -2)
+texture = ExtResource("4_1cw5x")

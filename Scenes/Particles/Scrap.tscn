@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://clk06povnuul8"]
+
+[ext_resource type="Texture2D" uid="uid://x7lo55fasjbt" path="res://Assets/Particles/ScrapSheet.png" id="1_abm5n"]
+[ext_resource type="Script" path="res://Concrete/Particles/Scrap.cs" id="2_lbgkw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05vib"]
+atlas = ExtResource("1_abm5n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysevn"]
+atlas = ExtResource("1_abm5n")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1our"]
+atlas = ExtResource("1_abm5n")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8vqb"]
+atlas = ExtResource("1_abm5n")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mkmv"]
+atlas = ExtResource("1_abm5n")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk4ly"]
+atlas = ExtResource("1_abm5n")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r1ppg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05vib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysevn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1our")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8vqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mkmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk4ly")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_dygk7"]
+resource_name = "float"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 3
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261799, 0.0, 0.261799, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6w24"]
+_data = {
+"float": SubResource("Animation_dygk7")
+}
+
+[node name="Scrap" type="AnimatedSprite2D"]
+modulate = Color(4, 3, 2, 1)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_r1ppg")
+frame_progress = 0.897198
+script = ExtResource("2_lbgkw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g6w24")
+}
