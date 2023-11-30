@@ -12,7 +12,6 @@ public partial class ThreeChoiceModal : Control
 		base._Ready();
 
 		_options = new UpgradeConstants.PortalUpgrade[3];
-		GD.Print($"I am in {GlobalPosition}");
 		for (int i = 0; i <= 2; i++)
 		{
 			_options[i] = Enum.GetValues<UpgradeConstants.PortalUpgrade>().PickRandomElement(except: _options);
@@ -23,7 +22,6 @@ public partial class ThreeChoiceModal : Control
 	}
 	public void OnButtonRelease(int buttonId)
 	{
-		GD.Print($"click {buttonId}");
 		if (_isActive)
 		{
 			var gs = this.GetAutoload<GameStateService>();

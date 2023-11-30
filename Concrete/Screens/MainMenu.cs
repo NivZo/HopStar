@@ -32,7 +32,6 @@ public partial class MainMenu : Node2D, IScreen
                 this.GetGame().ResetGame();
                 break;
             case MainMenuButton.Shop:
-                GD.Print("Shopping");
                 break;
             case MainMenuButton.Exit:
                 GetTree().Quit();

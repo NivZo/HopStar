@@ -22,7 +22,6 @@ public partial class CombatService : Node, ICombatService, IGameAutoLoad
 
             if (IsNoEnemies())
             {
-                GD.Print("portal!");
                 _isCombat = false;
                 this.GetAutoload<SceneService>()?.GetCurrentStage()?.InitPortals();
             }

@@ -63,8 +63,6 @@ public partial class Player : Combatant
         _guiService.UpdateBars();
 
         SetupInvulnerabilityTimer();
-
-        GD.Print($"Max = {_gameState.PlayerStatus.BaseMaxHealth}, Curr = {CurrentHealth}, Upgrades = {_gameState.PlayerStatus.Upgrades.MaxHealthPr}");
     }
 
     public override void _PhysicsProcess(double delta)
