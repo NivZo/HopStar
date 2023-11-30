@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bme4nr7w6ahvv" path="res://Scenes/Combatants/CombatantBody.tscn" id="1_n7j8l"]
 [ext_resource type="Script" path="res://Concrete/Enemies/LaserBeetle.cs" id="1_o6oh8"]
-[ext_resource type="Texture2D" uid="uid://pmw5ljvyev2i" path="res://Assets/Ships/LaserBeetleFireSheet.png" id="2_bdt5l"]
 [ext_resource type="Texture2D" uid="uid://bt8w2tec4raf7" path="res://Assets/Particles/BoostFlame.png" id="4_beiuq"]
 [ext_resource type="PackedScene" uid="uid://b0ptwlafnh707" path="res://Scenes/Combatants/RayPathfinder.tscn" id="5_ipffb"]
+[ext_resource type="Texture2D" uid="uid://baiow6d3dg7fa" path="res://Assets/Ships/EnemyOrange.png" id="6_ei6o4"]
 
 [sub_resource type="Gradient" id="Gradient_puc2w"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -26,7 +26,7 @@ resource_name = "fire"
 length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("CombatantSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -36,13 +36,37 @@ tracks/0/keys = {
 "update": 0,
 "values": [11, 15]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CombatantSprite:material:shader_parameter/width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.0, 2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CombatantSprite:material:shader_parameter/line_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.215686, 0, 1), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_j8oa8"]
 resource_name = "telegraph"
 length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("CombatantSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -51,6 +75,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CombatantSprite:material:shader_parameter/line_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.215686, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CombatantSprite:material:shader_parameter/width")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 3.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jlyqm"]
@@ -66,14 +114,12 @@ script = ExtResource("1_o6oh8")
 
 [node name="CombatantSprite" parent="CombatantBody" index="1"]
 rotation = -1.5708
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_bdt5l")
-hframes = 16
+texture = ExtResource("6_ei6o4")
 
 [node name="CombatantEngineParticleEmitter" type="GPUParticles2D" parent="CombatantBody"]
-self_modulate = Color(3, 0, 0.349, 1)
+self_modulate = Color(1, 0.611765, 0.239216, 0.607843)
 z_index = -1
-position = Vector2(-32, 0)
+position = Vector2(-48, 0)
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_5huhl")
 texture = ExtResource("4_beiuq")
@@ -84,7 +130,7 @@ randomness = 0.3
 visible = false
 rotation = 1.5708
 scale = Vector2(1.5, 1.5)
-polygon = PackedVector2Array(20, 0, 7, -20, -7, -20, -20, 0, -22, 25, 22, 25)
+polygon = PackedVector2Array(37.3334, 5.3332, 15.9999, -26.6667, -16.0001, -26.6666, -37.3333, 5.33347, 0.00011584, 32)
 
 [node name="RayPathfinder" parent="CombatantBody" instance=ExtResource("5_ipffb")]
 

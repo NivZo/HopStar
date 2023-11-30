@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cajohs6p1wrab"]
+[gd_scene load_steps=16 format=3 uid="uid://cajohs6p1wrab"]
 
 [ext_resource type="Script" path="res://Concrete/Particles/Projectile.cs" id="1_pnvnj"]
 [ext_resource type="Texture2D" uid="uid://cgn0uxkxefu4j" path="res://Assets/Particles/YellowBulletSheet.png" id="1_xqf5y"]
+[ext_resource type="Texture2D" uid="uid://bk8j38k1tq1w2" path="res://Assets/Particles/BlueLaser.png" id="2_4ybs8"]
 [ext_resource type="Texture2D" uid="uid://dhw7c23hn7wf5" path="res://Assets/Particles/RedBulletSheet.png" id="2_435cv"]
+[ext_resource type="Texture2D" uid="uid://dmmafwt3bi2s2" path="res://Assets/Particles/RedLaser.png" id="4_3u2yh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_os3y3"]
 atlas = ExtResource("2_435cv")
@@ -40,6 +42,14 @@ region = Rect2(96, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_4ybs8")
+}],
+"loop": true,
+"name": &"BlueLaser",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_os3y3")
 }, {
 "duration": 1.0,
@@ -53,6 +63,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"RedBullet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3u2yh")
+}],
+"loop": true,
+"name": &"RedLaser",
 "speed": 5.0
 }, {
 "frames": [{
@@ -83,7 +101,7 @@ script = ExtResource("1_pnvnj")
 modulate = Color(2, 2, 2, 1)
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_3hdnn")
-animation = &"RedBullet"
+animation = &"RedLaser"
 metadata/_edit_group_ = true
 
 [node name="PrjCollShape" type="CollisionShape2D" parent="."]

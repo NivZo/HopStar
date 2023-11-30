@@ -4,6 +4,8 @@ public static class WeaponConstants
     {
         YellowBullet,
         RedBullet,
+        BlueLaser,
+        RedLaser,
     }
 
     public enum WeaponTarget

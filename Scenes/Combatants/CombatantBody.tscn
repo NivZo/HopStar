@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bme4nr7w6ahvv"]
 
 [ext_resource type="Script" path="res://Concrete/Combatant/CombatantBody.cs" id="1_cdyvw"]
-[ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="2_8sj74"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="2_cwahj"]
 
 [sub_resource type="Animation" id="Animation_7cim6"]
 resource_name = "hitflash"
@@ -9,7 +9,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CombatantSprite:material:shader_parameter/active")
+tracks/0/path = NodePath("CombatantSprite:material:shader_parameter/flash")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -25,8 +25,10 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ax2wv"]
-shader = ExtResource("2_8sj74")
-shader_parameter/active = false
+shader = ExtResource("2_cwahj")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/width = 2.0
+shader_parameter/flash = false
 
 [node name="CombatantBody" type="RigidBody2D"]
 contact_monitor = true

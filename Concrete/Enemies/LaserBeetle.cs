@@ -8,9 +8,9 @@ public partial class LaserBeetle : Combatant
     {
         get => new(
             MaxHealth: 20,
-            Speed: 200f,
+            Speed: 350f,
             StartingRotation: 0f,
-            RotationSpeedPerDelta: .4f,
+            RotationSpeedPerDelta: .55f,
             TargetableType: WeaponConstants.WeaponTarget.Enemy);
     }
     protected override IStateController Controller { get => new EnemyController(Body); }
@@ -18,16 +18,16 @@ public partial class LaserBeetle : Combatant
         get {
             return new() {
                 new WeaponConfiguration(
-                    LengthOfSight: 700,
+                    LengthOfSight: 1000,
                     AngleOfSight: Mathf.Pi / 8,
                     ProjectileSpeed: 1200,
-                    ProjectileReloadSeconds: 1.5f,
+                    ProjectileReloadSeconds: 1.25f,
                     Damage: 1,
                     IsAutoAim: false,
                     PierceCount: 0,
                     ProjectileCount: 1,
                     ProjectileGroupSpreadAngle: 0,
-                    ProjectileType: WeaponConstants.ProjectileType.RedBullet,
+                    ProjectileType: WeaponConstants.ProjectileType.RedLaser,
                     WeaponTarget: WeaponConstants.WeaponTarget.Player,
                     PrefireAction: async () => {
                         var animationPlayer = Body.GetTypedChildByName<AnimationPlayer>("LaserBeetleAnimationPlayer");
