@@ -69,14 +69,13 @@ rotation = 1.5708
 texture = ExtResource("3_pbdv0")
 
 [node name="CombatantCollPolygon" type="CollisionPolygon2D" parent="CombatantBody"]
-visible = false
 rotation = 1.5708
-polygon = PackedVector2Array(-12, -32, 12, -32, 12, -4, 32, -4, 32, 32, 0, 24, -32, 32, -32, -4, -12, -4)
+polygon = PackedVector2Array(-8.00014, -40, 7.99986, -40, 15.9999, -16.0001, 56, -0.000202719, 40.0001, 31.9999, 0.0001448, 40, -39.9999, 32.0001, -56, 0.000202719, -16.0001, -15.9999)
 
 [node name="CombatantEngineParticleEmitter" type="GPUParticles2D" parent="CombatantBody"]
-self_modulate = Color(1, 2, 2, 1)
+self_modulate = Color(0, 1, 1.96078, 1)
 z_index = -1
-position = Vector2(-24, 0)
+position = Vector2(-32, 0)
 scale = Vector2(0.1, 0.1)
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_v3y3l")
