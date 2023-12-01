@@ -16,7 +16,6 @@ public partial class Projectile : Area2D
     public override async void _Ready()
     {
         base._Ready();
-
         await ToSignal(GetTree().CreateTimer(_timeToLiveSeconds), SceneTreeTimer.SignalName.Timeout);
         Destroy();
     }

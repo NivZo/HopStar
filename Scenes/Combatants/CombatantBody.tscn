@@ -26,8 +26,8 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ax2wv"]
 shader = ExtResource("2_cwahj")
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/width = 2.0
+shader_parameter/line_color = Color(1, 0.215686, 0, 1)
+shader_parameter/width = 5.0
 shader_parameter/flash = false
 
 [node name="CombatantBody" type="RigidBody2D"]

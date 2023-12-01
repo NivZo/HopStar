@@ -39,7 +39,6 @@ public partial class CombatService : Node, ICombatService, IGameAutoLoad
         timer.Connect("timeout", new(this, MethodName.CountCombatants));
         timer.Start();
         IsEnabled = true;
-        _isCombat = true;
     }
 
     public void StartCombat() => _isCombat = true;

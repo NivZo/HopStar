@@ -95,10 +95,12 @@ animations = [{
 radius = 8.0
 
 [node name="Projectile" type="Area2D"]
+z_index = -2
 script = ExtResource("1_pnvnj")
 
 [node name="PrjSprite" type="AnimatedSprite2D" parent="."]
 modulate = Color(2, 2, 2, 1)
+show_behind_parent = true
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_3hdnn")
 animation = &"RedLaser"

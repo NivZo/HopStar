@@ -31,10 +31,14 @@ public abstract partial class Combatant : Node2D, IConfigurable<CombatantConfigu
         
         CurrentHealth = Configuration.MaxHealth;
 
-        var weaponScene = GD.Load<PackedScene>(Weapon.ScenePath);
         foreach(var weaponConfig in WeaponConfigurations)
         {
-            var weapon = weaponScene.Instantiate<Weapon>();
+            var weaponScene = weaponConfig.IsPlayerWeapon ?
+                GD.Load<PackedScene>(PlayerWeapon.ScenePath) :
+                GD.Load<PackedScene>(EnemyWeapon.ScenePath);
+            Weapon weapon = weaponConfig.IsPlayerWeapon ?
+                weaponScene.Instantiate<PlayerWeapon>() :
+                weaponScene.Instantiate<EnemyWeapon>();
             weapon.Configuration = weaponConfig;
             weapon.Configure(Body);
         }

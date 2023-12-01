@@ -60,7 +60,7 @@ public partial class RayPathfinder : Node2D
     private float GetRayDeltaFromPlayer(RayCast2D ray)
     {
         var toPlayer = GlobalPosition.DirectionTo(_playerBody.GlobalPosition).Normalized();
-        return Mathf.Abs(toPlayer.DistanceSquaredTo(ray.TargetPosition.Normalized()));
+        return toPlayer.DistanceSquaredTo(ray.TargetPosition.Normalized());
     }
 
     private IEnumerable<RayCast2D> GetNonCollidingRays() => _rays.Where(ray => !IsCollision(ray.GetCollider() as Node2D));

@@ -21,6 +21,9 @@ public partial class CombatantBody : RigidBody2D, ICombatant
     private GpuParticles2D _engineParticleEmitter;
     private Combatant _parent;
     private Combatant Parent { get => _parent.IsValid() ? _parent : null; }
+    
+    [Export]
+    public bool IsLocked;
 
 	public override void _Ready()
 	{
@@ -42,7 +45,7 @@ public partial class CombatantBody : RigidBody2D, ICombatant
 			
 			if (Controller.DidStart)
 			{
-                if (v != Vector2.Zero)
+                if (v != Vector2.Zero && !IsLocked)
                 {
                     LinearVelocity = LinearVelocity.Lerp(v * Speed, (float)delta);
                     _engineParticleEmitter.Emitting = true;
@@ -56,7 +59,7 @@ public partial class CombatantBody : RigidBody2D, ICombatant
                 var contRotation = Controller.GetRotation();
 				var rotationDiff = contRotation - Rotation;
                 var rotationAmplifier = (v == Vector2.Zero ? 3 : 2) * (1 + Math.Abs(rotationDiff / Math.Tau));
-                var rotationWeight = (float)(delta * RotationSpeedPerDelta * rotationAmplifier);
+                var rotationWeight = (float)(delta * RotationSpeedPerDelta * rotationAmplifier) * (IsLocked ? 0 : 1);
                 Rotation = Mathf.LerpAngle(Rotation, contRotation, rotationWeight);
                 if (rotationDiff > 0.5)
                 {
@@ -86,4 +89,8 @@ public partial class CombatantBody : RigidBody2D, ICombatant
     private void OnCollision(Node2D body) => Parent?.HandleBodyCollision(body);
 
     public void TakeDamage(int damage) => Parent?.HandleBodyDamage(damage);
+
+    public void LockBody() => IsLocked = true;
+
+    public void UnlockBody() =>IsLocked = false;
 }

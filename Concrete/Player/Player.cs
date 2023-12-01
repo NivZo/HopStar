@@ -12,9 +12,9 @@ public partial class Player : Combatant
             var upgrades = gs.PlayerStatus.Upgrades;
             return new(
                 MaxHealth: (int)Math.Ceiling(gs.PlayerStatus.BaseMaxHealth * upgrades.MaxHealthPr),
-                Speed: 450f * upgrades.FlyingSpeedPr,
+                Speed: 500f * upgrades.FlyingSpeedPr,
                 StartingRotation: 0f,
-                RotationSpeedPerDelta: 0.75f * upgrades.TurningSpeedPr,
+                RotationSpeedPerDelta: 1f * upgrades.TurningSpeedPr,
                 TargetableType: WeaponConstants.WeaponTarget.Player);
         }
     }
@@ -27,9 +27,10 @@ public partial class Player : Combatant
         get {
             var upgrades = this.GetAutoload<GameStateService>().PlayerStatus.Upgrades;
             return new() {
-                new(LengthOfSight: 1000,
+                new(IsPlayerWeapon: true,
+                    LengthOfSight: 1000,
                     AngleOfSight: Mathf.Pi / 3 * upgrades.AimAccuracyPr,
-                    AccuracyAngle: Mathf.Pi / 30 * upgrades.AimAccuracyPr,
+                    AccuracyAngle: Mathf.Pi / 20 * upgrades.AimAccuracyPr,
                     ProjectileSpeed: 1200 * upgrades.BulletSpeedPr,
                     ProjectileReloadSeconds: 0.4f * (1 / upgrades.AttackSpeedPr),
                     PierceCount: 0 + upgrades.PierceCountAb,
@@ -37,6 +38,8 @@ public partial class Player : Combatant
                     ProjectileCount: 1 + upgrades.BulletCountAb,
                     ProjectileGroupSpreadAngle: upgrades.BulletCountAb * Mathf.Pi / 24,
                     IsAutoAim: false,
+                    IsControllerAim: true,
+                    IsAlwaysFire: true,
                     ProjectileType: WeaponConstants.ProjectileType.BlueLaser,
                     WeaponTarget: WeaponConstants.WeaponTarget.Enemy),
             };

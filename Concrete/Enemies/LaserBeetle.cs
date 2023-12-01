@@ -18,10 +18,11 @@ public partial class LaserBeetle : Combatant
         get {
             return new() {
                 new WeaponConfiguration(
-                    LengthOfSight: 1000,
+                    IsPlayerWeapon: false,
+                    LengthOfSight: 850,
                     AngleOfSight: Mathf.Pi / 8,
                     ProjectileSpeed: 1200,
-                    ProjectileReloadSeconds: 1.25f,
+                    ProjectileReloadSeconds: 0.25f,
                     Damage: 1,
                     IsAutoAim: false,
                     PierceCount: 0,

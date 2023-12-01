@@ -28,7 +28,7 @@ public static class UpgradeConstants
             case PortalUpgrade.AttackDamage:
                 return "Increase attack damage by 30%";
             case PortalUpgrade.AddBullets:
-                return "Increase bullet count by 2";
+                return "Increase bullet count by 2\nDecrease attack damage by 30%";
             case PortalUpgrade.BulletSpeed:
                 return "Increase bullet speed by 30%";
             case PortalUpgrade.FlyingSpeed:
@@ -71,6 +71,7 @@ public static class UpgradeConstants
                 break;
             case PortalUpgrade.AddBullets:
                 playerUpgrades.BulletCountAb += 2;
+                playerUpgrades.AttackDamagePr -= .3f;
                 break;
             case PortalUpgrade.BulletSpeed:
                 playerUpgrades.BulletSpeedPr += .3f;

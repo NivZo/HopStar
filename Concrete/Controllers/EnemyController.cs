@@ -15,4 +15,9 @@ public partial class EnemyController : IStateController
     public Vector2 GetVelocity() => _stateMachine.GetStateVelocity();
 
     public float GetRotation() => _stateMachine.GetStateRotation();
+    public EnemyConstants.EnemyState State
+    {
+        get => _stateMachine.State;
+        set => _stateMachine.State = value;
+    }
 }

@@ -55,6 +55,7 @@ public partial class PlayerController : Node2D, IController
             if (!DidStart && GetDeadzonedPosition() != Vector2.Zero)
             {
                 DidStart = true;
+                this.GetAutoload<CombatService>().StartCombat();
             }
         }
 

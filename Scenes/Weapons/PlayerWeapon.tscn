@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb3eport8kt64"]
+
+[ext_resource type="Script" path="res://Concrete/Weapons/PlayerWeapon.cs" id="1_gtdly"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aq7wu"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_gtdly")
+
+[node name="WpnVisionArea" type="Area2D" parent="."]
+
+[node name="WpnVisionCollShape" type="CollisionPolygon2D" parent="WpnVisionArea"]
+material = SubResource("CanvasItemMaterial_aq7wu")
+polygon = PackedVector2Array(0, 0, -5, -10, 0, -10, 5, -10)
